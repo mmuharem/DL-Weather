@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  FirstViewController.swift
 //  Weather-App
 //
 //  Created by Mehmed Muharemovic on 1/22/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class IndividualWeatherVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

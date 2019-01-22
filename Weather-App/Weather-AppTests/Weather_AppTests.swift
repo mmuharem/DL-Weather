@@ -30,5 +30,15 @@ class Weather_AppTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testFirstViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let individual = storyboard.instantiateInitialViewController() as! IndividualWeatherVC
+        let _ = individual.view
+    }
+    
+    func testConnectionToOpenWeather() {
+        
+    }
 
 }

@@ -21,6 +21,8 @@
 		D059B51021F7E15100373E2A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = D059B50F21F7E15100373E2A /* Global.swift */; };
 		D059B51221F7E36400373E2A /* WeatherRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D059B51121F7E36400373E2A /* WeatherRequestHandler.swift */; };
 		D059B51421F7EAE500373E2A /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D059B51321F7EAE500373E2A /* LocationHandler.swift */; };
+		D0B5CD4321F82A7B009F4981 /* WeatherHourlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5CD4121F82A7B009F4981 /* WeatherHourlyTableViewCell.swift */; };
+		D0B5CD4421F82A7B009F4981 /* WeatherHourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B5CD4221F82A7B009F4981 /* WeatherHourlyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		D059B50F21F7E15100373E2A /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		D059B51121F7E36400373E2A /* WeatherRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequestHandler.swift; sourceTree = "<group>"; };
 		D059B51321F7EAE500373E2A /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
+		D0B5CD4121F82A7B009F4981 /* WeatherHourlyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyTableViewCell.swift; sourceTree = "<group>"; };
+		D0B5CD4221F82A7B009F4981 /* WeatherHourlyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,8 @@
 				D059B50F21F7E15100373E2A /* Global.swift */,
 				D059B51121F7E36400373E2A /* WeatherRequestHandler.swift */,
 				D059B51321F7EAE500373E2A /* LocationHandler.swift */,
+				D0B5CD4121F82A7B009F4981 /* WeatherHourlyTableViewCell.swift */,
+				D0B5CD4221F82A7B009F4981 /* WeatherHourlyTableViewCell.xib */,
 			);
 			path = "Weather-App";
 			sourceTree = "<group>";
@@ -289,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D059B4EC21F7D77400373E2A /* LaunchScreen.storyboard in Resources */,
+				D0B5CD4421F82A7B009F4981 /* WeatherHourlyTableViewCell.xib in Resources */,
 				D059B4E921F7D77400373E2A /* Assets.xcassets in Resources */,
 				D059B4E721F7D76F00373E2A /* Main.storyboard in Resources */,
 			);
@@ -408,6 +415,7 @@
 			files = (
 				D059B51221F7E36400373E2A /* WeatherRequestHandler.swift in Sources */,
 				D059B51021F7E15100373E2A /* Global.swift in Sources */,
+				D0B5CD4321F82A7B009F4981 /* WeatherHourlyTableViewCell.swift in Sources */,
 				D059B4E421F7D76F00373E2A /* WeekWeatherVC.swift in Sources */,
 				D059B51421F7EAE500373E2A /* LocationHandler.swift in Sources */,
 				D059B4E021F7D76F00373E2A /* AppDelegate.swift in Sources */,
@@ -588,6 +596,7 @@
 			baseConfigurationReference = 52B8D6C8C54EB8E833D9A4EE /* Pods-Weather-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SCA6TZJEGK;
 				INFOPLIST_FILE = "Weather-App/Info.plist";
@@ -597,6 +606,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tome.Weather-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -607,6 +617,7 @@
 			baseConfigurationReference = 97A219CA904BCEE308361010 /* Pods-Weather-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SCA6TZJEGK;
 				INFOPLIST_FILE = "Weather-App/Info.plist";
@@ -616,6 +627,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tome.Weather-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

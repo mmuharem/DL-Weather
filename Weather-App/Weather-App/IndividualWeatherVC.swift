@@ -13,7 +13,6 @@ class IndividualWeatherVC: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var hourlyTableView: UITableView!
     @IBOutlet weak var FiveDayForecastButton: UIBarButtonItem!
     
     var currentLocation : LocationStruct?
@@ -24,16 +23,21 @@ class IndividualWeatherVC: UIViewController {
         
         LocationHandler.sharedInstance.start()
         
+        self.cityLabel.text = "Enable Location to find City"
+        self.temperatureLabel.text = "-- F"
+        
         //Get current location
         NotificationCenter.default.addObserver(self, selector: #selector(updateLocation(_:)), name: NSNotification.Name(rawValue: "updateLocation"), object: nil)
     }
     
     @objc func updateLocation(_ notification: Notification) {
         WeatherRequestHandler.sharedInstance.getWeatherForLocationDay { (response, result) in
+            
             if response == RequestAnswer.Success {
                 self.cityLabel.text = result.first?.name
+                
                 if let temp = result.first?.main?.temp {
-                    self.temperatureLabel.text = "\(temp) F"
+                    self.temperatureLabel.text = "\(Int(temp)) F"
                 }
                 
             } else if response == RequestAnswer.Failure {

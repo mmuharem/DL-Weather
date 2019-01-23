@@ -73,17 +73,24 @@ public class LocationHandler: NSObject, CLLocationManagerDelegate {
         
         if let location = locations.last {
             let locValue:CLLocationCoordinate2D = location.coordinate
-            latitude = Double(locValue.latitude)
-            longitude = Double(locValue.longitude)
+            latitude = Double(locValue.latitude).roundTo(places: 2) //.rounded() / 1000 //round to 3 decimal places
+            longitude = Double(locValue.longitude).roundTo(places: 2) //.rounded() / 1000 //round to 3 decimal places
             print("\tlatitude: \(latitude)")
             print("\tlongitude: \(longitude)")
             
             var locationStruct = LocationStruct()
             locationStruct.lat = latitude
             locationStruct.long = longitude
-            self.location = locationStruct
-
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLocation"), object: self.location)
+            
+            //only send update if location has changed
+//            if self.location?.lat != locationStruct.lat &&
+//                self.location?.long != locationStruct.long {
+                
+                print("\t\tsending location")
+                self.location = locationStruct
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLocation"), object: self.location)
+//            }
             
         } else {
             // shouldn't happen!

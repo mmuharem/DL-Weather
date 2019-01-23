@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-mv-0vz">
-                                <rect key="frame" x="33" y="63" width="302" height="30"/>
+                                <rect key="frame" x="36" y="116" width="302" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dP-fG-9iD">
@@ -94,11 +94,40 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEB-r7-ei9">
+                                <rect key="frame" x="36" y="87" width="302" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="26P-G5-79M">
+                                <rect key="frame" x="36" y="216" width="302" height="235"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHF-FB-H3x">
+                                <rect key="frame" x="36" y="171" width="302" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" id="xR3-80-2aU"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="EEB-r7-ei9" id="V7E-2D-xN0"/>
+                        <outlet property="dateLabel" destination="aHF-FB-H3x" id="yVF-Ff-K1b"/>
+                        <outlet property="day1Button" destination="2dP-fG-9iD" id="dAr-sX-tHS"/>
+                        <outlet property="day2Button" destination="uTM-0n-XvB" id="dA1-qk-7Vy"/>
+                        <outlet property="day3Button" destination="fxe-ee-UQs" id="dK7-Ck-pmt"/>
+                        <outlet property="day4Button" destination="3nM-33-qqs" id="Lfm-hQ-2xX"/>
+                        <outlet property="day5Button" destination="kct-3H-4Vr" id="azc-kY-bdp"/>
+                        <outlet property="tableView" destination="26P-G5-79M" id="cjp-gI-fdy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

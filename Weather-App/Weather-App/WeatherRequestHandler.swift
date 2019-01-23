@@ -34,7 +34,6 @@ class WeatherRequestHandler {
                 Alamofire.request(OPEN_WEATHER_MAP_URL + "/weather", method: .get, parameters: parameters)
                     .responseJSON { response in
                         if response.result.isSuccess {
-                            
                             guard let data = response.data else {
                                 completion(RequestAnswer.Failure, [])
                                 return
@@ -61,7 +60,7 @@ class WeatherRequestHandler {
         }
     }
     
-    public func getWeatherForLocationWeek(completion: @escaping (RequestAnswer, Any?) -> Void ) {
+    public func getWeatherForLocationWeek(completion: @escaping (RequestAnswer, [DayWeatherModel]) -> Void ) {
         if let location = LocationHandler.sharedInstance.location {
             
             if let lat = location.lat,
@@ -79,20 +78,33 @@ class WeatherRequestHandler {
                 Alamofire.request(OPEN_WEATHER_MAP_URL + "/forecast", method: .get, parameters: parameters)
                     .responseJSON { response in
                         if response.result.isSuccess {
-                            dump(response.data)
                             
-                            completion(RequestAnswer.Success, response.result.value)
+                            guard let data = response.data else {
+                                completion(RequestAnswer.Failure, [])
+                                return
+                            }
+
+                            do {
+                                let days = try JSONDecoder().decode(DayWeatherModel.self, from: data)
+//                                dump(days)
+                                
+                                completion(RequestAnswer.Success, [days])
+                            } catch let jsonErr {
+                                print("Error serializing: \(jsonErr)")
+                                completion(RequestAnswer.Failure, [])
+                            }
+                            
                         } else {
-                            completion(RequestAnswer.Failure, nil)
+                            completion(RequestAnswer.Failure, [])
                         }
                 }
             } else {
                 //lat or long nil
                 //lat or long 0.0 (default)
-                completion(RequestAnswer.Failure, nil)
+                completion(RequestAnswer.Failure, [])
             }
         } else {
-            completion(RequestAnswer.Failure, nil)
+            completion(RequestAnswer.Failure, [])
         }
     }
 }

@@ -9,16 +9,12 @@
 import Foundation
 import CoreLocation
 
-struct LocationStruct : Codable {
-    var lat : Double? = nil
-    var long : Double? = nil
-}
-
 public class LocationHandler: NSObject, CLLocationManagerDelegate {
     
     public var longitude : Double = 0
     public var latitude : Double = 0
     private var locationmanager : CLLocationManager?
+    public var location : LocationStruct?
     
     public static let sharedInstance : LocationHandler = {
         let instance = LocationHandler()
@@ -82,6 +78,13 @@ public class LocationHandler: NSObject, CLLocationManagerDelegate {
             print("\tlatitude: \(latitude)")
             print("\tlongitude: \(longitude)")
             
+            var locationStruct = LocationStruct()
+            locationStruct.lat = latitude
+            locationStruct.long = longitude
+            self.location = locationStruct
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLocation"), object: self.location)
+            
         } else {
             // shouldn't happen!
             print("\tcoordinates still empty")
@@ -116,24 +119,5 @@ public class LocationHandler: NSObject, CLLocationManagerDelegate {
             break
         }
     }
-    
-    func getAppLocationForEventSearch() -> LocationStruct {
-        //check if users info is available
-        var locationStruct = LocationStruct()
-        
-        if LocationHandler.sharedInstance.latitude != 0.0 && LocationHandler.sharedInstance.longitude != 0.0 {
-            print("USE PHONE GPS")
-            
-            locationStruct.lat = LocationHandler.sharedInstance.latitude
-            locationStruct.long = LocationHandler.sharedInstance.longitude
-            
-            return locationStruct
-        }
-        
-        //bail out
-        locationStruct.lat = 0.0
-        locationStruct.long = 0.0
-        return locationStruct
-        
-    }
+
 }

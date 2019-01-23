@@ -16,11 +16,83 @@ class WeatherRequestHandler {
         return instance
     }()
     
-    public func getWeatherForLocationDay() {
-        
+    public func getWeatherForLocationDay(completion: @escaping (RequestAnswer, [DayWeatherModel]) -> Void ) {
+        if let location = LocationHandler.sharedInstance.location {
+            
+            if let lat = location.lat,
+                let long = location.long,
+                lat != 0.0,
+                long != 0.0 {
+                
+                let parameters: Parameters = [
+                    "lat": "\(lat)",
+                    "lon": "\(long)",
+                    "APPID" : "\(OPEN_WEATHER_MAP_API_KEY)",
+                    "units" : "imperial"
+                ]
+                
+                Alamofire.request(OPEN_WEATHER_MAP_URL + "/weather", method: .get, parameters: parameters)
+                    .responseJSON { response in
+                        if response.result.isSuccess {
+                            
+                            guard let data = response.data else {
+                                completion(RequestAnswer.Failure, [])
+                                return
+                            }
+                            
+                            do {
+                                let day = try JSONDecoder().decode(DayWeatherModel.self, from: data)
+                                completion(RequestAnswer.Success, [day])
+                            } catch let jsonErr {
+                                print("Error serializing: \(jsonErr)")
+                                completion(RequestAnswer.Failure, [])
+                            }
+                        } else {
+                            completion(RequestAnswer.Failure, [])
+                        }
+                }
+            } else {
+                //lat or long nil
+                //lat or long 0.0 (default)
+                completion(RequestAnswer.Failure, [])
+            }
+        } else {
+            completion(RequestAnswer.Failure, [])
+        }
     }
     
-    public func getWeatherForLocationWeek() {
-        
+    public func getWeatherForLocationWeek(completion: @escaping (RequestAnswer, Any?) -> Void ) {
+        if let location = LocationHandler.sharedInstance.location {
+            
+            if let lat = location.lat,
+                let long = location.long,
+                lat != 0.0,
+                long != 0.0 {
+                
+                let parameters: Parameters = [
+                    "lat": "\(lat)",
+                    "lon": "\(long)",
+                    "APPID" : "\(OPEN_WEATHER_MAP_API_KEY)",
+                    "units" : "imperial"
+                ]
+                
+                Alamofire.request(OPEN_WEATHER_MAP_URL + "/forecast", method: .get, parameters: parameters)
+                    .responseJSON { response in
+                        if response.result.isSuccess {
+                            dump(response.data)
+                            
+                            completion(RequestAnswer.Success, response.result.value)
+                        } else {
+                            completion(RequestAnswer.Failure, nil)
+                        }
+                }
+            } else {
+                //lat or long nil
+                //lat or long 0.0 (default)
+                completion(RequestAnswer.Failure, nil)
+            }
+        } else {
+            completion(RequestAnswer.Failure, nil)
+        }
     }
 }
